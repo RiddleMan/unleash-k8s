@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-unleash-api-client = "0.6.0"
+reqwest = { version = "0.11", features = ["json"] }
 kube = { version = "0.70.0" }
 k8s-openapi = { version = "0.14.0", features = ["v1_23"] }
 tokio = { version = "1.17.0", features = ["full"] }
