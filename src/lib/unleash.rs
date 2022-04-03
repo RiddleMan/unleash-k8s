@@ -1,5 +1,5 @@
+use reqwest::Client as ReqwestClient;
 use serde::{Deserialize, Serialize};
-use reqwest::{Client as ReqwestClient};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FeatureResponse {
@@ -22,28 +22,25 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn new(
-        url: String,
-        token: String,
-    ) -> Client {
+    pub fn new(url: &String, token: &String) -> Client {
         let reqwest_client = ReqwestClient::new();
         Client {
-            url,
-            token,
+            url: url.clone(),
+            token: url.clone(),
             client: reqwest_client,
         }
     }
 
     pub async fn get_features(&self) -> Result<FeaturesResponse, Box<dyn std::error::Error>> {
-        let result = self.client.get(self.url.clone() + &"api/client/features".to_string())
+        let result = self
+            .client
+            .get(self.url.clone() + &"api/client/features".to_string())
             .header("Authorization", &self.token)
             .header("Accepts", "application/json")
             .send()
             .await?;
 
-        let features = result
-            .json::<FeaturesResponse>()
-            .await?;
+        let features = result.json::<FeaturesResponse>().await?;
 
         Ok(features)
     }

@@ -23,7 +23,6 @@ pub struct Args {}
 
 impl Args {
     pub fn parse() -> Arguments {
-        let args = Arguments::parse();
-        args
+        Arguments::parse()
     }
 }
