@@ -11,6 +11,12 @@ pub struct Arguments {
 
     #[clap(long)]
     pub unleash_project: Option<String>,
+
+    #[clap(long, default_value = "default")]
+    pub namespace: String,
+
+    #[clap(long, default_value = "unleash-feature-flags")]
+    pub secret_name: String,
 }
 
 pub struct Args {}

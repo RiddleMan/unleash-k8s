@@ -3,16 +3,16 @@ use reqwest::{Client as ReqwestClient};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FeatureResponse {
-    name: String,
-    enabled: bool,
-    project: String,
-    description: String,
+    pub name: String,
+    pub enabled: bool,
+    pub project: String,
+    pub description: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FeaturesResponse {
-    version: u32,
-    features: Vec<FeatureResponse>,
+    pub version: u32,
+    pub features: Vec<FeatureResponse>,
 }
 
 pub struct Client {
