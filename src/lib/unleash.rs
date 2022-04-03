@@ -22,11 +22,11 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn new(url: &String, token: &String) -> Client {
+    pub fn new(url: &str, token: &str) -> Client {
         let reqwest_client = ReqwestClient::new();
         Client {
-            url: url.clone(),
-            token: url.clone(),
+            url: url.to_string(),
+            token: token.to_string(),
             client: reqwest_client,
         }
     }

@@ -9,12 +9,12 @@ pub struct K8s;
 
 impl K8s {
     pub async fn save_secret(
-        namespace: &String,
-        name: &String,
+        namespace: &str,
+        name: &str,
         values: &HashMap<String, bool>,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let client = Client::try_default().await?;
-        let secrets: Api<Secret> = Api::namespaced(client, &namespace);
+        let secrets: Api<Secret> = Api::namespaced(client, namespace);
 
         let base64_values = values.iter().fold(HashMap::new(), |mut acc, (key, value)| {
             if *value {
@@ -39,7 +39,7 @@ impl K8s {
             Ok(_) => Ok(()),
             Err(_) => {
                 secrets
-                    .replace(&name, &PostParams::default(), &patch)
+                    .replace(name, &PostParams::default(), &patch)
                     .await?;
                 Ok(())
             }
