@@ -22,7 +22,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     );
 
-    println!("{:#?}", x);
+    lib::k8s::K8s::save_secret(
+        args.namespace,
+        args.secret_name,
+        x
+    ).await?;
+
     Ok(())
 }
 
